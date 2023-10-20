@@ -1,0 +1,105 @@
+# Documentation: Using Ansible Playbook and Bash Script
+
+## Introduction
+
+This documentation provides instructions on how to use the provided Ansible playbook 
+and Bash script to automate the deployment of a LAMP (Linux, Apache, MySQL, PHP) stack. The Ansible playbook is designed to configure the "Slave" node created using Vagrant and execute additional tasks.
+
+## Prerequisites
+
+Before you begin, ensure the following prerequisites are met:
+
+1. **Vagrant and VirtualBox**: You should have Vagrant and VirtualBox installed 
+on your local machine for setting up and managing virtual machines.
+
+2. **SSH Key Pair (Optional)**: If you want to use an SSH key pair for authentication,
+ make sure you have the private key file available.
+
+3. **Clone PHP Application (Optional)**: If your PHP application is hosted on a GitHub repository,
+ you may need the URL for cloning.
+
+## Section 1: Setting Up the Environment
+
+Before you proceed with using the Ansible playbook and Bash script, 
+make sure you've set up your environment:
+
+- **Project Directory**: Organize your files and scripts within a project directory.
+
+- **Vagrantfile**: Ensure you have a `Vagrantfile` in your project directory to 
+define VM configurations.
+
+## Section 2: Ansible Playbook Instructions
+
+The provided Ansible playbook, `provision.yml`, automates additional tasks on the "Slave" node.
+ Here's how to use it:
+
+1. **Configuration**:
+   - Open `provision.yml` and review its content.
+   - Customize any variables or settings as needed, such as the `name` of the cron job,
+    or the `minute` and `hour` settings.
+
+2. **Running the Playbook**:
+   - Open your terminal.
+   - Navigate to your project directory.
+   - Execute the following command to run the Ansible playbook:
+
+     ```bash
+     ansible-playbook provision.yml -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
+     ```
+
+   - The playbook will configure the "Slave" node and create a daily cron job 
+   to check server uptime.
+
+## Section 3: Using the Bash Script
+
+The provided Bash script, `lamp-install.sh`, is used to automate the installation of LAMP 
+components and configure the environment. Here's how to use it:
+
+1. **Configuration**:
+   - Open `lamp-install.sh` and review its content.
+   - Customize any settings within the script, such as MySQL credentials or 
+   the URL of the PHP application.
+
+2. **Running the Script**:
+   - Open your terminal.
+   - Navigate to your project directory.
+   - Execute the following command to run the Bash script:
+
+     ```bash
+     ./lamp-install.sh
+     ```
+
+   - The script will perform the following tasks:
+     - Update package lists.
+     - Install LAMP components.
+     - Clone the PHP application from GitHub (if specified).
+     - Configure MySQL.
+     - Configure Apache.
+     - Set file permissions for the application directory.
+
+## Section 4: Verifying the Setup
+
+After running the Ansible playbook and Bash script, you should verify that the setup is 
+functioning as expected:
+
+1. **Access the PHP Application**:
+   - Open a web browser.
+   - Enter the IP address of the "Slave" VM to access the PHP application.
+
+2. **Cron Job Check**:
+   - Verify that the daily cron job for server uptime has been created.
+   - Capture evidence or screenshots as needed.
+
+## Section 5: Additional Notes
+
+- Provide any additional information or notes that may be helpful for users.
+- Include tips for maintaining the environment, recommendations, or best practices.
+
+## Conclusion
+
+You have successfully used the provided Ansible playbook and Bash script to automate the
+ deployment of a LAMP stack.
+  Ensure to follow best practices for security and maintenance in your environment.
+
+
+  
